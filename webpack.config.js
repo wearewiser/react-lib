@@ -1,28 +1,36 @@
-const webpack = require('webpack');
+const path = require("path");
+require("webpack");
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: "./src/index.ts",
   output: {
-    filename: process.env.npm_package_main.split('/').reverse()[0],
-    libraryTarget: 'this'
+    path: path.resolve(__dirname, "lib"),
+    filename: "index.js",
+    libraryTarget: "commonjs2",
   },
-  target: 'node',
+  target: "node",
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: ['ts-loader']
-      }
-    ]
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: false, // Enables full type checking and `.d.ts` generation
+              compilerOptions: {
+                declaration: true,
+                declarationMap: true,
+                outDir: "lib",
+              },
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+    ],
   },
-  plugins: [
-    new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true }),
-  ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: [".ts", ".tsx", ".js"],
   },
-  stats: {
-    warningsFilter: /^(?!CriticalDependenciesWarning$)/
-  }
 };
-
