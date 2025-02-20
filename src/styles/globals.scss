@@ -1,0 +1,32 @@
+// globals.scss
+
+// Import variables and mixins
+@import 'vars';
+@import 'mixins';
+@import 'typography';
+
+// Global reset or normalize styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Body styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: 'Roboto', sans-serif;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+// Utility classes
+.container {
+  @include center(80%);
+  padding: $spacing-unit;
+}
+
+.clearfix {
+  @include clearfix();
+}

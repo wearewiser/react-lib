@@ -1,0 +1,26 @@
+// _mixins.scss
+
+// Mixin for clearfix
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Mixin for center alignment
+@mixin center($width: 100%) {
+  margin-left: auto;
+  margin-right: auto;
+  width: $width;
+}
+
+// Mixin for responsive font size
+@mixin responsive-font($min-size, $max-size) {
+  font-size: $min-size;
+
+  @media (min-width: 768px) {
+    font-size: $max-size;
+  }
+}
