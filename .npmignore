@@ -1,0 +1,24 @@
+# Import .gitignore to avoid duplication
+include .gitignore
+
+# Allow the compiled library to be published
+!lib/
+!node_modules/
+
+# Exclude TypeScript source files (only include compiled lib/)
+src/
+
+# Exclude assets not needed in the package
+fonts/
+styles/
+assets/
+
+# Exclude test files and dev configs
+*.log
+*.lock
+*.tgz
+jest.config.js
+tsconfig.json
+webpack.config.js
+package-lock.json
+.DS_Store
