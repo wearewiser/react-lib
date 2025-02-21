@@ -152,9 +152,20 @@ export default function HelloPage() {
 ```
 
 ### Importing Static Files
-Files under `./src/static/files` are copied into the project's `./public/files` directory. If this directory does not exist, it will be created. This will be triggered every time the packatge is explicity installed or upgraded.
+Files under `./src/static/files` are copied into the project's `./public/files` directory. If this directory does not exist, it will be created. This will be triggered every time the packatge is explicity installed or upgraded. The behaviour of this synchronization process can be configured with a `.wiserrc` file.
 
+**.wiserrc**
+```ini
+[files]
+skip=false
+destination=public/files
+overwrite=false
+```
+> **Note**
+>
+> These are the default values that will be applied if a `.wiserrc` file is not found in the root of the consuming project directory. If the `.wisrrc` file is included, then all values must be provided.
 
+**Example Usage**
 ```bash
 $ npm install --save @wiser/react-lib@latest --foreground-scripts
 
@@ -172,7 +183,7 @@ Static files copied from /home/johnfedoruk/Projects/@wearewiser/wiser-react-test
 ```
 > **Note**
 >
-> You do not need to pass --foreground-scripts unless you want to see the output. Also note that this package will overwrite files when name conflicts occur. Make sure to check your git status to verify if unexpected modifications have occured.
+> You do not need to pass --foreground-scripts unless you want to see the output.
 
 ```TSX
 export default function DownloadPage() {

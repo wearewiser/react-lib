@@ -3,6 +3,7 @@ const { cp } = require("fs/promises");
 const path = require("path");
 const fs = require("fs");
 const { fork } = require("child_process");
+const ini = require('ini')
 
 let total_waited = 0;
 const MAX_WAIT = 5000;
@@ -59,13 +60,29 @@ async function copyStaticFiles() {
   try {
     const source = path.resolve(__dirname, "lib", "static", "files");    
     await waitForFileOrDir(source);
-    const consumerRoot = findConsumerRoot();
-    const destination = path.resolve(consumerRoot, "public", "files");
-    await cp(source, destination, { recursive: true });
+    const consumer_root = findConsumerRoot();
+    const ini_path = path.resolve(consumer_root, ".wiserrc");
+    let config = {
+      files: {
+        destionation: 'public/files',
+        skip: false,
+        overwrite: false,
+      },
+    };
+    if (fs.existsSync(ini_path)) {
+      config = Object.assign(config, ini.parse(fs.readFileSync(ini_path, 'utf-8')));
+      console.log(JSON.stringify(config));
+    }
+    if (config.files.skip) {
+      console.log("Skipping static file copy.");
+      return;
+    }
+    const destination = path.resolve(consumer_root, config.files.destination);
+    await cp(source, destination, { recursive: true, force: config.files.overwrite });
     console.log(`Static files copied from ${source} to ${destination}`);
   } catch (error) {
-    console.error("Error copying static files:", error);
-    process.exit(1);
+    console.log("Error copying static files:", error);
+    process.exit(0);
   }
 }
 
