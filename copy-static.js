@@ -55,23 +55,23 @@ function findConsumerRoot() {
   throw new Error("Could not get client root");
 }
 
-async function copyStaticAssets() {
+async function copyStaticFiles() {
   try {
-    const source = path.resolve(__dirname, "lib", "static");    
+    const source = path.resolve(__dirname, "lib", "static", "files");    
     await waitForFileOrDir(source);
     const consumerRoot = findConsumerRoot();
-    const destination = path.resolve(consumerRoot, "public");
+    const destination = path.resolve(consumerRoot, "public", "files");
     await cp(source, destination, { recursive: true });
-    console.log(`Static assets copied from ${source} to ${destination}`);
+    console.log(`Static files copied from ${source} to ${destination}`);
   } catch (error) {
-    console.error("Error copying static assets:", error);
+    console.error("Error copying static files:", error);
     process.exit(1);
   }
 }
 
 (async () => {
   if (process.argv.includes("--child")) {
-    copyStaticAssets();
+    copyStaticFiles();
   } else {
     console.log(`Postinstall: forking and waiting MAX ${Math.round(MAX_WAIT/1000)}s for static assets...`);
     setTimeout(() => {
