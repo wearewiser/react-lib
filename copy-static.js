@@ -5,8 +5,16 @@ const fs = require("fs");
 const { fork } = require("child_process");
 const ini = require('ini')
 
-let total_waited = 0;
+// constants
 const MAX_WAIT = 5000;
+const INI_NAME = ".wiserrc";
+const FILE_SOURCE = "lib/static/files";
+const DEFAULT_FILE_DESTINATION = 'public/files';
+const DEFAULT_FILE_SKIP = false;
+const DEFAULT_FILE_OVERWRITE = false;
+
+// global variables
+let total_waited = 0;
 
 async function waitForFileOrDir(source, interval = 100) {
   while (!fs.existsSync(source) && total_waited < MAX_WAIT) {
@@ -58,15 +66,15 @@ function findConsumerRoot() {
 
 async function copyStaticFiles() {
   try {
-    const source = path.resolve(__dirname, "lib", "static", "files");    
+    const source = path.resolve(__dirname, FILE_SOURCE);    
     await waitForFileOrDir(source);
     const consumer_root = findConsumerRoot();
-    const ini_path = path.resolve(consumer_root, ".wiserrc");
+    const ini_path = path.resolve(consumer_root, INI_NAME);
     let config = {
       files: {
-        destionation: 'public/files',
-        skip: false,
-        overwrite: false,
+        destination: DEFAULT_FILE_DESTINATION,
+        skip: DEFAULT_FILE_SKIP,
+        overwrite: DEFAULT_FILE_OVERWRITE,
       },
     };
     if (fs.existsSync(ini_path)) {
