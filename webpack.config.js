@@ -16,7 +16,7 @@ module.exports = {
   entry: entries,
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: "[name].js", // This preserves subdirectory structure
+    filename: "[name].js",
     libraryTarget: "commonjs2"
   },
   target: "web",
@@ -37,9 +37,9 @@ module.exports = {
         // Process SCSS files
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader, // Extract CSS into a separate file
-          "css-loader",                // Translate CSS into CommonJS
-          "sass-loader"                // Compile Sass to CSS
+          MiniCssExtractPlugin.loader,
+          "css-loader", 
+          "sass-loader"
         ],
       },
     ]
@@ -47,7 +47,6 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      // Alias to ensure proper resolution of React and ReactDOM
       react: path.dirname(require.resolve("react/package.json")),
       "react-dom": path.dirname(require.resolve("react-dom/package.json")),
     },
@@ -59,14 +58,17 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "globals.css", // Output CSS file (you can adjust the filename as needed)
+      filename: "globals.css",
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          // Copy fonts from src/fonts to lib/fonts
           from: path.resolve(__dirname, "src/fonts"),
           to: path.resolve(__dirname, "lib/fonts"),
+        },
+        {
+          from: path.resolve(__dirname, "src/static"),
+          to: path.resolve(__dirname, "lib/static"),
         },
       ],
     }),
