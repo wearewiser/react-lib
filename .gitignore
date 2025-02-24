@@ -10,3 +10,5 @@
 /.vscode/
 /ormconfig.json
 /*.tgz
+*storybook.log
+/src/stories/
