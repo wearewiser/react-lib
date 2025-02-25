@@ -67,6 +67,7 @@
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "ini": "^5.0.0",
+    "next": "^15.0.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "reflect-metadata": "^0.1.13",
