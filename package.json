@@ -53,7 +53,9 @@
     "tsc": "npm run clean && node node_modules/typescript/bin/tsc --p tsconfig.json",
     "clean": "rm -rf lib",
     "lint": "./node_modules/.bin/eslint . --ext ts",
-    "docs": "node node_modules/typedoc/bin/typedoc --out docs/ src/ && echo '*\n!.gitignore' > docs/.gitignore"
+    "docs": "node node_modules/typedoc/bin/typedoc --out docs/ src/ && echo '*\n!.gitignore' > docs/.gitignore",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "license": "MIT",
   "dependencies": {
@@ -68,6 +70,13 @@
     "tsnode-di": "0.0.3"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
+    "@storybook/addon-essentials": "^8.5.8",
+    "@storybook/addon-interactions": "^8.5.8",
+    "@storybook/addon-links": "^8.5.8",
+    "@storybook/blocks": "^8.5.8",
+    "@storybook/nextjs": "^8.5.8",
+    "@storybook/test": "^8.5.8",
     "@types/chai": "^4.3.4",
     "@types/cors": "^2.8.13",
     "@types/mocha": "^10.0.1",
@@ -78,6 +87,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "eslint": "^8.36.0",
+    "eslint-plugin-storybook": "^0.11.3",
     "mini-css-extract-plugin": "^2.9.2",
     "mocha": "^10.2.0",
     "nodemon": "^1.12.1",
@@ -85,11 +95,17 @@
     "nyc": "^15.1.0",
     "sass": "^1.85.0",
     "sass-loader": "^16.0.5",
+    "storybook": "^8.5.8",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.28",
     "typescript": "^5.0.2",
     "webpack": "^5.76.3",
     "webpack-cli": "^5.0.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
