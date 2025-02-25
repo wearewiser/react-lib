@@ -4,6 +4,7 @@
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "license": "MIT",
   "files": [
     "lib"
   ],
@@ -62,7 +63,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "license": "MIT",
   "dependencies": {
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
