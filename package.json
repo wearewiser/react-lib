@@ -4,6 +4,7 @@
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "license": "MIT",
   "files": [
     "lib"
   ],
@@ -44,6 +45,11 @@
   "bin": {
     "copy-static": "./copy-static.js"
   },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
   "scripts": {
     "postinstall": "copy-static 2>/dev/null || exit 0",
     "test": "jest test --passWithNoTests",
@@ -53,12 +59,13 @@
     "tsc": "npm run clean && node node_modules/typescript/bin/tsc --p tsconfig.json",
     "clean": "rm -rf lib",
     "lint": "./node_modules/.bin/eslint . --ext ts",
-    "docs": "node node_modules/typedoc/bin/typedoc --out docs/ src/ && echo '*\n!.gitignore' > docs/.gitignore"
+    "docs": "node node_modules/typedoc/bin/typedoc --out docs/ src/ && echo '*\n!.gitignore' > docs/.gitignore",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
-  "license": "MIT",
   "dependencies": {
     "ini": "^5.0.0",
-    "payload": "latest",
+    "next": "^15.0.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "reflect-metadata": "^0.1.13",
@@ -69,6 +76,13 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
+    "@chromatic-com/storybook": "^3.2.4",
+    "@storybook/addon-essentials": "^8.5.8",
+    "@storybook/addon-interactions": "^8.5.8",
+    "@storybook/addon-links": "^8.5.8",
+    "@storybook/blocks": "^8.5.8",
+    "@storybook/nextjs": "^8.5.8",
+    "@storybook/test": "^8.5.8",
     "@types/chai": "^4.3.4",
     "@types/cors": "^2.8.13",
     "@types/jest": "^29.5.14",
@@ -84,6 +98,7 @@
     "eslint": "^8.36.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "eslint-plugin-storybook": "^0.11.3",
     "mini-css-extract-plugin": "^2.9.2",
     "mocha": "^10.2.0",
     "nodemon": "^1.12.1",
@@ -92,6 +107,7 @@
     "sass": "^1.85.0",
     "sass-loader": "^16.0.5",
     "ts-jest": "^29.2.6",
+    "storybook": "^8.5.8",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.2",
     "typedoc": "^0.23.28",
