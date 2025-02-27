@@ -1,1 +1,3 @@
-export * from "./atoms/Header/Header";
+export * from "./atoms";
+export * from "./molecules";
+export * from "./organisms";
