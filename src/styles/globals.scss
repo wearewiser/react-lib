@@ -1,9 +1,9 @@
 // globals.scss
 
 // Import variables and mixins
-@import "./mixins";
-@import "./typography";
-@import "./vars";
+@import "vars";
+@import "mixins";
+@import "typography";
 
 // for an intro on how this works, see https://www.youtube.com/watch?v=c13gpBrnGEw&t=839s
 .content-grid,
