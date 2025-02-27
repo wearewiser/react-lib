@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Cta from "../../atoms/Cta";
 
 const Downloader = () => {
