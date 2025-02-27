@@ -1,9 +1,54 @@
 // _mixins.scss
 
+@use "/src/styles/vars" as vars;
+
+@mixin grid-container($cols: repeat(12, 1fr), $gap: 12px, $gapMobile: 8px) {
+  display: grid;
+  grid-template-columns: $cols;
+  gap: $gap;
+
+  @media screen and (max-width: vars.$breakpoints-md) {
+    gap: $gapMobile;
+  }
+}
+
+/// Mixin to manage responsive breakpoints
+/// @author Kitty Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+///
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key(vars.$breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (max-width: map-get(vars.$breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+          + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin loading-shine {
+  background: linear-gradient(90deg, #0000 33%, rgba(255, 255, 255, 0.1) 50%, #0000 66%) rgba(255, 255, 255, 0.25);
+  background-size: 300% 100%;
+  animation: shine 2s infinite;
+
+  @keyframes shine {
+    0% {
+      background-position: right;
+    }
+  }
+}
+
 // Mixin for clearfix
 @mixin clearfix() {
   &::after {
-    content: '';
+    content: "";
     display: table;
     clear: both;
   }

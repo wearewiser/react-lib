@@ -1,1 +1,1 @@
-export * from "./Header";
+export * from "./atoms/Header/Header";

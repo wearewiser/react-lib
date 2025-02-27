@@ -12,3 +12,19 @@ $base-line-height: 1.5;
 
 // Spacing variables
 $spacing-unit: 1rem;
+
+// Breakpoint variables
+$breakpoints-xs: 375px;
+$breakpoints-sm: 576px;
+$breakpoints-md: 768px;
+$breakpoints-lg: 992px;
+$breakpoints-xl: 1280px;
+$breakpoints-xxl: 1440px;
+$breakpoints: (
+  xs: $breakpoints-xs,
+  sm: $breakpoints-sm,
+  md: $breakpoints-md,
+  lg: $breakpoints-lg,
+  xl: $breakpoints-xl,
+  xxl: $breakpoints-xxl
+) !default;

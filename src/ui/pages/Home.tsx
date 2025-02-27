@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Header } from "../components/Header";
+import { Header } from "../components/atoms/Header/Header";
 import { USERS } from "../../data";
 import { pickUser } from "../../utils/pickUser";
 
