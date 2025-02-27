@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/css/core";
 import Cta from "@/ui/components/atoms/Cta/Cta";
-import SvgArrowRight from "@/ui/components/atoms/Svg/SvgArrowRight";
+import SvgChevronRight from "@/ui/components/atoms/Svg/SvgChevronRight";
 import HorizontalWheel from "@/utils/splide/horizontal-wheel";
 
 export interface CarouselProps {
@@ -55,12 +55,12 @@ const Carousel: FC<CarouselProps> = ({
         <div className="splide__arrows">
           <div className="splide__arrow__wrapper splide__arrow__wrapper--prev">
             <Cta className="splide__arrow splide__arrow--prev" variant="icon">
-              <SvgArrowRight />
+              <SvgChevronRight />
             </Cta>
           </div>
           <div className="splide__arrow__wrapper splide__arrow__wrapper--next">
             <Cta className="splide__arrow splide__arrow--next" variant="icon">
-              <SvgArrowRight />
+              <SvgChevronRight />
             </Cta>
           </div>
         </div>
