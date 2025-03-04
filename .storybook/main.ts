@@ -12,5 +12,8 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {},
   },
+  features: {
+    backgroundsStoryGlobals: true,
+  },
 };
 export default config;
