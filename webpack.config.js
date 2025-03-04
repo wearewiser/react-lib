@@ -49,6 +49,7 @@ module.exports = {
     alias: {
       react: path.dirname(require.resolve("react/package.json")),
       "react-dom": path.dirname(require.resolve("react-dom/package.json")),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   externals: {
