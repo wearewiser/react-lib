@@ -17,7 +17,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: "[name].js",
-    libraryTarget: "commonjs2"
+    libraryTarget: "commonjs2",
+    publicPath: './',
   },
   target: "web",
   devtool: "source-map",
@@ -37,10 +38,31 @@ module.exports = {
         // Process SCSS files
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader", 
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: './', // load CSS relative to the JS file location
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: "[local]_[hash:base64:5]",
+              },
+              esModule: false,
+            },
+          },
           "sass-loader"
         ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|otf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        },
       },
     ]
   },
@@ -49,6 +71,7 @@ module.exports = {
     alias: {
       react: path.dirname(require.resolve("react/package.json")),
       "react-dom": path.dirname(require.resolve("react-dom/package.json")),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   externals: {
@@ -58,7 +81,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "globals.css",
+      filename: "[name].css",
     }),
     new CopyWebpackPlugin({
       patterns: [
