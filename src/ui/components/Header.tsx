@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 import React from "react";
-import { User } from "../../models";
+import { User } from "@/models";
 
 interface HeaderProps {
   user: User;
