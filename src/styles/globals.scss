@@ -23,6 +23,6 @@ body {
 
 // Utility classes
 .container {
-  @include center(80%);
+  @include mixins.center(80%);
   padding: vars.$spacing-unit;
 }
