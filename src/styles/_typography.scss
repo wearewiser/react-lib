@@ -1,7 +1,7 @@
 // _typography.scss
 
 // Import variables
-@import 'vars';
+@use 'vars' as vars;
 
 // Font-face declaration for Roboto (Regular & Italic)
 @font-face {
@@ -21,9 +21,9 @@
 // Base typography styles
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  color: $text-color;
+  font-size: vars.$base-font-size;
+  line-height: vars.$base-line-height;
+  color: vars.$text-color;
 }
 
 // Heading styles

@@ -37,7 +37,7 @@
       "import": "./lib/utils/index.js",
       "types": "./lib/utils/index.d.ts"
     },
-    "./styles": "./lib/globals.css",
+    "./styles": "./lib/index.css",
     "./static/*": "./lib/static/*",
     "./images/*": "./lib/static/images/*",
     "./files/*": "./lib/static/files/*"

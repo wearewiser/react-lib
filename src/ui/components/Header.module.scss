@@ -1,0 +1,7 @@
+@use "@/styles/vars.scss" as vars;
+@use "@/styles/mixins.scss" as mixins;
+
+.header {
+  background: vars.$secondary-color;
+  @include mixins.center(250px);
+}

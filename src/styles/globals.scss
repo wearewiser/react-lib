@@ -1,9 +1,9 @@
 // globals.scss
 
 // Import variables and mixins
-@import 'vars';
-@import 'mixins';
-@import 'typography';
+@use "vars" as vars;
+@use "mixins" as mixins;
+@use "typography" as typography;
 
 // Global reset or normalize styles
 * {
@@ -14,19 +14,15 @@
 
 // Body styles
 body {
-  background-color: $background-color;
-  color: $text-color;
-  font-family: 'Roboto', sans-serif;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
+  background-color: vars.$background-color;
+  color: vars.$text-color;
+  font-family: "Roboto", sans-serif;
+  font-size: vars.$base-font-size;
+  line-height: vars.$base-line-height;
 }
 
 // Utility classes
 .container {
-  @include center(80%);
-  padding: $spacing-unit;
-}
-
-.clearfix {
-  @include clearfix();
+  @include mixins.center(80%);
+  padding: vars.$spacing-unit;
 }
