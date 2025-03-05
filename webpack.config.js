@@ -73,4 +73,9 @@ module.exports = {
       ],
     }),
   ],
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 128000,
+    maxAssetSize: 512000
+  }
 };
