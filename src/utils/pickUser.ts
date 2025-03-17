@@ -1,4 +1,4 @@
-import { User } from "../models";
+import { User } from "@/models";
 
 export const pickUser = (users: User[]): User => {
   const size = users.length;

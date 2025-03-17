@@ -1,5 +1,5 @@
 import styles from "./Downloader.module.scss";
-import { Logo } from "../../molecules/Logo";
+import { Logo } from "@/ui/components/molecules/Logo";
 
 const Downloader = () => {
   return (
