@@ -1,5 +1,5 @@
 {
-  "name": "{{pkg}}",
+  "name": "@wiser/hello",
   "version": "0.0.0",
   "description": "",
   "main": "./lib/index.js",
@@ -28,6 +28,10 @@
     "./ui/components": {
       "import": "./lib/ui/components/index.js",
       "types": "./lib/ui/components/index.d.ts"
+    },
+    "./ui/pages": {
+      "import": "./lib/ui/pages/index.js",
+      "types": "./lib/ui/pages/index.d.ts"
     },
     "./hooks": {
       "import": "./lib/hooks/index.js",
