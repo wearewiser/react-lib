@@ -1,12 +1,12 @@
-# react-lib
+# {{pkg}}
 
-Generated with `npm init nodets@0.0.0`.
+Generated with `{{exe}}`.
 
 ## Usage
 
 ### Installation
 
-Install the package using `npm install --save @wiser/react-lib@latest`. The package should now be available to be included in your React 19 project.
+Install the package using `npm install --save {{pkg}}`. The package should now be available to be included in your React 19 project.
 
 ### Importing
 
@@ -30,7 +30,7 @@ Global styles in the `./src/styles/globals.scss` file, and all its associated im
 // layout.tsx
 import type { Metadata } from "next";
 ...
-import "@wiser/react-lib/styles";
+import "{{pkg}}/styles";
 import "./globals.css";
 ...
 ```
@@ -39,22 +39,22 @@ import "./globals.css";
 > Import your local globals.scss file afterwards so that default styles provided by the library can be overwritten.
 
 ### Importing Pages
-Pages exported by the library can be used as standalone pages in your Next.js app. For example, if the library exports a page component from @wiser/react-lib, you can add it to your Next.js routing system by importing a `page.tsx` page component and exporing it directly as default.
+Pages exported by the library can be used as standalone pages in your Next.js app. For example, if the library exports a page component from {{pkg}}, you can add it to your Next.js routing system by importing a `page.tsx` page component and exporing it directly as default.
 
 **Example Usage**
 ```TSX
-import { Home } from "@wiser/react-lib";
+import { Home } from "{{pkg}}";
 
 export default Home; 
 ```
 
 ### Importing Components
 
-Components are available root exports in the @wiser/react-lib package. These can be imported into TSX files and used as react components.
+Components are available root exports in the {{pkg}} package. These can be imported into TSX files and used as react components.
 
 **Example Usage**
 ```TSX
-import { Header } from "@wiser/react-lib";
+import { Header } from "{{pkg}}";
 
 export default function AboutPage() {
   return (
@@ -75,8 +75,8 @@ Utility functions are available from the utils path. They can be included in any
 import {
   pickUser,
   User,
-} from "@wiser/react-lib";
-import { USERS } from "@wiser/react-lib/data";
+} from "{{pkg}}";
+import { USERS } from "{{pkg}}/data";
 
 ...
 
@@ -90,7 +90,7 @@ The library includes a set of reusable hooks to simplify common state and behavi
 **Example Usage**
 ```TSX
 import React from "react";
-import { useToggle } from "@wiser/react-lib";
+import { useToggle } from "{{pkg}}";
 
 export default function ToggleExample() {
   const [isToggled, toggle] = useToggle(false);
@@ -108,15 +108,15 @@ export default function ToggleExample() {
 > You will need to ensure that the usage is scoped to the browser. We've included "use-client" in this example to accomplish this.
 
 ### Importing Models
-Models are available from the root path of the @wiser/react-lib package. They can be included in any TS files.
+Models are available from the root path of the {{pkg}} package. They can be included in any TS files.
 
 **Example Usage**
 ```TSX
 import {
   pickUser,
   User,
-} from "@wiser/react-lib";
-import { USERS } from "@wiser/react-lib/data";
+} from "{{pkg}}";
+import { USERS } from "{{pkg}}/data";
 
 ...
 
@@ -124,21 +124,21 @@ const random_user: User = pickUser(USERS);
 ```
 
 ### Importing Data
-Hard coded data is available from the data path in the @wiser/react-lib package. This can be included in any TS files.
+Hard coded data is available from the data path in the {{pkg}} package. This can be included in any TS files.
 
 **Example Usage**
 ```TSX
-import { USERS } from "@wiser/react-lib/data";
+import { USERS } from "{{pkg}}/data";
 
 console.log(USERS);
 ```
 
 ### Importing Images
-Images can be imported from the @wiser/react-lib package, under the images directory. Also import the Image component from next/image and pass the imported image into Image's src attribute directive.
+Images can be imported from the {{pkg}} package, under the images directory. Also import the Image component from next/image and pass the imported image into Image's src attribute directive.
 
 **Example Usage**
 ```TSX
-import wiser_image from "@wiser/react-lib/images/wiser.png";
+import wiser_image from "{{pkg}}/images/wiser.png";
 import Image from "next/image";
 
 export default function HelloPage() {
@@ -167,18 +167,18 @@ overwrite=false
 
 **Example Usage**
 ```bash
-$ npm install --save @wiser/react-lib@latest --foreground-scripts
+$ npm install --save {{pkg}}@latest --foreground-scripts
 
 **Example Usage**
 ...
 
 found 0 vulnerabilities
 
-> @wiser/react-lib@0.0.0 postinstall
+> {{pkg}}@0.0.0 postinstall
 > copy-static 2>/dev/null || exit 0
 
 Postinstall: forking and waiting MAX 5s for static assets...
-Static files copied from /home/johnfedoruk/Projects/@wearewiser/wiser-react-test/node_modules/@wiser/react-lib/lib/static/files to /home/johnfedoruk/Projects/@wearewiser/wiser-react-test/public/files
+Static files copied from /home/johnfedoruk/Projects/@wearewiser/wiser-react-test/node_modules/{{pkg}}/lib/static/files to /home/johnfedoruk/Projects/@wearewiser/wiser-react-test/public/files
 ...
 ```
 > **Note**
