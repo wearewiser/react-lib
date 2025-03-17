@@ -1,5 +1,5 @@
 {
-  "name": "{{pkg}}",
+  "name": "@wiser/hello",
   "version": "0.0.0",
   "description": "",
   "main": "./lib/index.js",
@@ -28,6 +28,10 @@
     "./ui/components": {
       "import": "./lib/ui/components/index.js",
       "types": "./lib/ui/components/index.d.ts"
+    },
+    "./ui/pages": {
+      "import": "./lib/ui/pages/index.js",
+      "types": "./lib/ui/pages/index.d.ts"
     },
     "./hooks": {
       "import": "./lib/hooks/index.js",
@@ -65,7 +69,6 @@
   },
   "dependencies": {
     "ini": "^5.0.0",
-    "next": "^15.0.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "reflect-metadata": "^0.1.13",
@@ -73,9 +76,6 @@
     "tsnode-di": "0.0.3"
   },
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
     "@chromatic-com/storybook": "^3.2.4",
     "@storybook/addon-essentials": "^8.5.8",
     "@storybook/addon-interactions": "^8.5.8",
@@ -83,6 +83,9 @@
     "@storybook/blocks": "^8.5.8",
     "@storybook/nextjs": "^8.5.8",
     "@storybook/test": "^8.5.8",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
     "@types/chai": "^4.3.4",
     "@types/cors": "^2.8.13",
     "@types/jest": "^29.5.14",
@@ -93,12 +96,14 @@
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
     "chai": "^4.3.7",
+    "classnames": "^2.5.1",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "eslint": "^8.36.0",
+    "eslint-plugin-storybook": "^0.11.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "eslint-plugin-storybook": "^0.11.3",
     "mini-css-extract-plugin": "^2.9.2",
     "mocha": "^10.2.0",
     "nodemon": "^1.12.1",
@@ -106,8 +111,8 @@
     "nyc": "^15.1.0",
     "sass": "^1.85.0",
     "sass-loader": "^16.0.5",
-    "ts-jest": "^29.2.6",
     "storybook": "^8.5.8",
+    "ts-jest": "^29.2.6",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.2",
     "typedoc": "^0.23.28",

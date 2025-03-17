@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Header } from "./Header";
+import Logo from "./Logo";
 
-const meta: Meta<typeof Header> = {
-  title: "Components/Header",
-  component: Header,
+const meta: Meta<typeof Logo> = {
+  title: "Molecules/Logo",
+  component: Logo,
   tags: ["autodocs"],
   argTypes: {
-    user: {
+    src: {
       control: "object",
     },
   },
@@ -21,10 +21,10 @@ const meta: Meta<typeof Header> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Header>;
+type Story = StoryObj<typeof Logo>;
 
 export const Default: Story = {
   args: {
-    user: { id: 0, name: "john", email: "john@example.com" },
+    src: "https://wearewiser.com/images/wiser-logo.svg",
   },
 };

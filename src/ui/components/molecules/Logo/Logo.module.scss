@@ -1,0 +1,9 @@
+@use "@/styles/vars.scss" as vars;
+@use "@/styles/mixins.scss" as mixins;
+
+.logo {
+  background: vars.$primary-color;
+  height: 100px;
+  width: 100px;
+  padding: 5px;
+}
