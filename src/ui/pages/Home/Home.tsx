@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { Header, Downloader } from "../../components";
-import { USERS } from "../../../data";
-import { pickUser } from "../../../utils/pickUser";
+import { Header, Downloader } from "@/ui/components";
+import { USERS } from "@/data";
+import { pickUser } from "@/utils/pickUser";
 
 const Home: React.FC = () => {
   const luckyUser = pickUser(USERS);
