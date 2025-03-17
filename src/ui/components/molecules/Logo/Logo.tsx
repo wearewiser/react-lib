@@ -1,4 +1,3 @@
-"use client";
 import styles from "./Logo.module.scss";
 import React from "react";
 /**
@@ -11,7 +10,7 @@ import React from "react";
  */
 // import Image from "next/image";
 
-interface LogoProps {
+export interface LogoProps {
   src: string;
 }
 
