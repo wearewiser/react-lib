@@ -1,0 +1,12 @@
+@use "@/styles/vars.scss" as vars;
+@use "@/styles/mixins.scss" as mixins;
+
+.downloader {
+  a {
+    padding: 2px;
+    background: vars.$secondary-color;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
+}

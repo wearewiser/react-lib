@@ -1,0 +1,9 @@
+// _mixins.scss
+
+// Mixin for center alignment
+@mixin center($width: 100%) {
+  margin-left: auto;
+  margin-right: auto;
+  width: $width;
+  text-align: center;
+}

@@ -1,0 +1,52 @@
+// _typography.scss
+
+// Import variables
+@use 'vars' as vars;
+
+// Font-face declaration for Roboto (Regular & Italic)
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900; // Variable weight range
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/roboto/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900; // Variable weight range
+  font-style: italic;
+}
+
+// Base typography styles
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: vars.$base-font-size;
+  line-height: vars.$base-line-height;
+  color: vars.$text-color;
+}
+
+// Heading styles
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 0.875em; }
+
+// Utility classes for font weights
+.font-thin { font-weight: 100; }
+.font-light { font-weight: 300; }
+.font-regular { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+
+// Utility classes for italics
+.font-italic { font-style: italic; }
