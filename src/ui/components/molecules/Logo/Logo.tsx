@@ -5,17 +5,12 @@ import React from "react";
  * run
  * npm install --save next@15
  * 
- * Be sure to add "use client" to the top
- * line of your pages that include Image component.
- * 
  * WARNING!
- * Including dependencies that require browser
- * context to render will pollute the main bundle
- * so it will require that "use client" be used
- * for all pages importing package components,
- * or package components that run in a server
- * context will need to be imported from a directory
- * level that does not contain client context.
+ * NextJS components bring in context which should
+ * not be compiled into package bundles. In order
+ * to include NextJS components, add NextJS to
+ * the externals configuration in Webpack. See
+ * webpack.config.js for an example.
  */
 // import Image from "next/image";
 

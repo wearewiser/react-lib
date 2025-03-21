@@ -35,13 +35,12 @@ module.exports = {
         }]
       },
       {
-        // Process SCSS files
         test: /\.scss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: './', // load CSS relative to the JS file location
+              publicPath: './',
             },
           },
           {
@@ -78,6 +77,15 @@ module.exports = {
     react: "react",
     "react-dom": "react-dom",
     "react/jsx-runtime": "react/jsx-runtime",
+    /**
+     * Include NextJS as an external when
+     * bringing in NextJS components.
+     * Ensure that they are installed as
+     * a dependency with
+     * npm install --save next@15
+     */
+    // "next": "commonjs next",
+    // "next/image": "commonjs next/image"
   },
   plugins: [
     new MiniCssExtractPlugin({
