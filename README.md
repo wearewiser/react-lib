@@ -199,19 +199,64 @@ export default function DownloadPage() {
 
 ```
 
-## Scripts
+## Development
 
-### npm run build
-Builds the project and outputs it to the `./dist/` directory. Bundled with webpack and outputs a single executable.
+### Building with External Component Dependencies
 
-### npm run lint
+When building components that have a NextJS component dependencies, you will need to follow two steps: First, include NextJS as peer dependency with `npm install --save next@15`. Second, configure webpack to avoid bringing in NextJS context into the compiled bundle. This is done by adding NextJS to this library's Webpack externals configuration.
+
+As an example, after installing next as a dependency, the `src/ui/components/molecules/Logo/Logo.tsx` file can be updated to use NextJS' Image component:
+
+```TSX
+import styles from "./Logo.module.scss";
+import React from "react";
+import Image from "next/image";
+
+export interface LogoProps {
+  src: string;
+}
+
+const Logo: React.FC<LogoProps> = ({ src }) => {
+  return (
+    <Image className={styles.logo} src={src} alt="Hello" height="24" width="77" />
+  );
+};
+
+export default Logo;
+```
+
+and then `webpack.config.js` can be updated to include NextJS as an external package:
+
+
+```js
+...
+module.exports = {
+  ...
+  externals: {
+    ...
+    "next": "commonjs next",
+    "next/image": "commonjs next/image"
+  }
+  ...
+};
+```
+
+### Scripts
+
+#### npm run build
+Builds the project and outputs it to the `./lib/` directory. Bundled with webpack and outputs a single importable TypeScript file and single component scoped style module.
+
+#### npm run lint
 Runs the linter.
 
-### npm run test
+#### npm run test
 Runs the unit tests.
 
-### npm run clean
+#### npm run clean
 Cleans the project directory of all compilation artifacts.
 
-### npm run docs
+#### npm run docs
 Generates the TSDocs for the current project.
+
+#### npm run storybook
+Launches a storybook server to view components.
