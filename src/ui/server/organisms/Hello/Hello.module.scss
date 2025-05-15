@@ -1,0 +1,9 @@
+@use "{{pkg}}/styles/vars.scss" as vars;
+@use "{{pkg}}/styles/mixins.scss" as mixins;
+
+.hello {
+  color: vars.$secondary-color;
+  p {
+    font-style: italic;
+  }
+}

@@ -1,0 +1,6 @@
+@use "{{pkg}}/styles/vars.scss" as vars;
+@use "{{pkg}}/styles/mixins.scss" as mixins;
+
+.session_counter {
+  color: vars.$primary-color;
+}

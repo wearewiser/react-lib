@@ -1,38 +1,49 @@
-require('webpack');
-const path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 const glob = require("glob");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { merge } = require("webpack-merge");
 
-// Build entries by scanning for all index.ts files recursively under src
-const entries = {};
-glob.sync("./src/**/index.ts").forEach(file => {
-  const entry_key = file.replace(/^\.\/src\//, "").replace(/\.ts$/, "");
-  entries[entry_key] = file;
-});
+const PKG_NAME = "{{pkg}}";
 
-module.exports = {
+function entries(match, exclude) {
+  const entries = {};
+  glob.sync(match).forEach((file) => {
+    if (!exclude || !file.startsWith(exclude)) {
+      const entryKey = file.replace(/^\.\/src\//, "").replace(/\.ts$/, "");
+      entries[entryKey] = file;
+    }
+  });
+  return entries;
+}
+
+const BASE_CONFIG = {
   mode: "production",
-  entry: entries,
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: "[name].js",
-    libraryTarget: "commonjs2",
-    publicPath: './',
-  },
-  target: "web",
   devtool: "source-map",
+  target: "node",
+  output: {
+    path: path.resolve(__dirname, "lib"),
+    filename: "[name].js",
+    libraryTarget: "module",
+    publicPath: "./",
+  },
+  experiments: {
+    outputModule: true,
+  },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: false
-          }
-        }]
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: false,
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
@@ -40,7 +51,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: './',
+              publicPath: "./",
             },
           },
           {
@@ -53,24 +64,26 @@ module.exports = {
               esModule: false,
             },
           },
-          "sass-loader"
+          "sass-loader",
         ],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|otf)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'fonts/[name][ext]'
-        },
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
-    ]
+    ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
       react: path.dirname(require.resolve("react/package.json")),
       "react-dom": path.dirname(require.resolve("react-dom/package.json")),
-      "@": path.resolve(__dirname, "src"),
+      "{{pkg}}": path.resolve(__dirname, "src"),
     },
   },
   externals: {
@@ -84,13 +97,31 @@ module.exports = {
      * a dependency with
      * npm install --save next@15
      */
-    // "next": "commonjs next",
-    // "next/image": "commonjs next/image"
+
+    // next: "next",
+    // "next/image": "next/image",
+    // "next/link": "next/link",
+    // "next/navigation": "next/navigation",
+  },
+  performance: {
+    hints: "warning",
+    maxEntrypointSize: 128000,
+    maxAssetSize: 512000,
+  },
+};
+
+const BASE_WEBPACK_CONFIG = merge(BASE_CONFIG, {
+  entry: entries("./src/**/index.ts", "./src/ui"),
+  module: {
+    rules: [
+      {
+        test: /\.(woff(2)?|ttf|eot|otf)$/,
+        type: "asset/resource",
+        generator: { filename: "fonts/[name][ext]" },
+      },
+    ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -104,9 +135,41 @@ module.exports = {
       ],
     }),
   ],
-  performance: {
-    hints: 'warning',
-    maxEntrypointSize: 128000,
-    maxAssetSize: 512000
-  }
-};
+});
+
+const CLIENT_WEBPACK_CONFIG = merge(BASE_CONFIG, {
+  entry: entries("./src/ui/client/**/index.ts"),
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: `'use client';`,
+      raw: true,
+      entryOnly: false,
+      stage: webpack.Compilation.PROCESS_ASSETS_STAGE_REPORT,
+      test: /^.*\/(client)\/.*index\.js$/,
+    }),
+  ],
+});
+
+const SERVER_WEBPACK_CONFIG = merge(BASE_CONFIG, {
+  entry: entries("./src/ui/server/**/index.ts"),
+  externals: [
+    BASE_CONFIG.externals,
+    function ({ request }, callback) {
+      if (/^(?!@\/)(?!\.\.)/.test(request)) {
+        return callback();
+      }
+      if (/^(?!.*\/(client)\/).*$/.test(request)) {
+        return callback();
+      }
+      const import_path = request.replace(/^.*(?=\/client\/)/, PKG_NAME);
+      return callback(null, import_path);
+    },
+  ],
+});
+
+module.exports = [
+  CLIENT_WEBPACK_CONFIG,
+  SERVER_WEBPACK_CONFIG,
+  BASE_WEBPACK_CONFIG,
+];
+
