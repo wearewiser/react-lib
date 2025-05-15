@@ -1,4 +1,4 @@
-import { User } from "@/models";
+import { User } from "{{pkg}}/models";
 
 export const USERS: User[] = [
   {

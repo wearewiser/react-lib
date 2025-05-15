@@ -9,10 +9,6 @@
     "lib"
   ],
   "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "types": "./lib/index.d.ts"
-    },
     "./data": {
       "import": "./lib/data/index.js",
       "types": "./lib/data/index.d.ts"
@@ -21,17 +17,41 @@
       "import": "./lib/models/index.js",
       "types": "./lib/models/index.d.ts"
     },
-    "./ui": {
-      "import": "./lib/ui/index.js",
-      "types": "./lib/ui/index.d.ts"
+    "./client": {
+      "import": "./lib/ui/client/index.js",
+      "types": "./lib/ui/client/index.d.ts"
     },
-    "./ui/components": {
-      "import": "./lib/ui/components/index.js",
-      "types": "./lib/ui/components/index.d.ts"
+    "./ui/client": {
+      "import": "./lib/ui/client/index.js",
+      "types": "./lib/ui/client/index.d.ts"
     },
-    "./ui/pages": {
-      "import": "./lib/ui/pages/index.js",
-      "types": "./lib/ui/pages/index.d.ts"
+    "./client/*": {
+      "import": "./lib/ui/client/*/index.js",
+      "types": "./lib/ui/client/*/index.d.ts"
+    },
+    "./ui/client/*": {
+      "import": "./lib/ui/client/*/index.js",
+      "types": "./lib/ui/client/*/index.d.ts"
+    },
+    "./server": {
+      "import": "./lib/ui/server/index.js",
+      "types": "./lib/ui/server/index.d.ts"
+    },
+    "./ui/server": {
+      "import": "./lib/ui/server/index.js",
+      "types": "./lib/ui/server/index.d.ts"
+    },
+    "./server/*": {
+      "import": "./lib/ui/server/*/index.js",
+      "types": "./lib/ui/server/*/index.d.ts"
+    },
+    "./ui/server/*": {
+      "import": "./lib/ui/server/*/index.js",
+      "types": "./lib/ui/server/*/index.d.ts"
+    },
+    "./configs": {
+      "import": "./lib/configs/index.js",
+      "types": "./lib/configs/index.d.ts"
     },
     "./hooks": {
       "import": "./lib/hooks/index.js",
